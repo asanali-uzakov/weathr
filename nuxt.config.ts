@@ -9,6 +9,9 @@ export default defineNuxtConfig({
   ],
   ssr: false,
   devtools: { enabled: true },
+  colorMode: {
+    classSuffix: '',
+  },
   compatibilityDate: '2024-11-01',
   eslint: {
     config: {
