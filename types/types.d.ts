@@ -18,3 +18,13 @@ interface WeatherData {
     temperatureMin: number
   }[]
 }
+
+interface City {
+  name: string
+  country: string
+  countryCode: string
+  state?: string
+  latitude: number
+  longitude: number
+  placeId: number
+}
