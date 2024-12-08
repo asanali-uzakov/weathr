@@ -1,13 +1,18 @@
 export const useCitiesStore = defineStore('cities', () => {
-  const cities: Ref<City[]> = useLocalStorage('cities', [])
+  const savedCities: Ref<City[]> = useLocalStorage('saved-cities', [])
+  const currentCity = ref<City | undefined>(undefined)
 
   function add(city: City) {
-    if (cities.value.some(c => c.placeId === city.placeId)) return
-    cities.value.push(city)
+    if (savedCities.value.some(c => c.placeId === city.placeId)) return
+    savedCities.value.push(city)
   }
 
   function remove(city: City) {
-    cities.value = cities.value.filter(c => c.placeId !== city.placeId)
+    savedCities.value = savedCities.value.filter(c => c.placeId !== city.placeId)
+  }
+
+  function open(city: City) {
+    currentCity.value = city
   }
 
   async function get(q: string): Promise<City[]> {
@@ -23,5 +28,5 @@ export const useCitiesStore = defineStore('cities', () => {
       longitude: city.lon as number,
     }))
   }
-  return { cities, add, remove, get }
+  return { savedCities, currentCity, add, remove, open, get }
 })
