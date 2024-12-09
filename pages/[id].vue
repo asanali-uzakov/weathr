@@ -1,5 +1,20 @@
 <template>
-  <div class="w-full min-h-screen flex items-center justify-center bg-muted p-10">
+  <div class="min-h-screen flex flex-col gap-4 items-center justify-center bg-muted p-10">
+    <div class="flex justify-between w-full">
+      <h1 class="text-lg font-medium">
+        <Icon name="line-md:map-marker-filled" />
+        {{ city.name }}, {{ city.country }}
+      </h1>
+      <p class="text-muted-foreground">
+        {{ useDateFormat(Date.now(), 'ddd DD.MM, HH:mm') }}
+      </p>
+      <Button
+        size="sm"
+        @click="addCity"
+      >
+        Add city <Shortcut><span>⌘⏎</span></Shortcut>
+      </Button>
+    </div>
     <WeatherMain
       :weather-data="weatherData"
       :city="city"
@@ -11,6 +26,20 @@
 const id = useRoute().params.id as string
 const city = await useGeo().lookup(id)
 const weatherData = await useWeatherStore().getWeatherData(city.latitude, city.longitude)
+
+const keys = useMagicKeys()
+
+watch(keys['Cmd+Enter'], (v) => {
+  if (v) {
+    addCity()
+  }
+})
+
+function addCity() {
+  console.log('add city')
+  useCitiesStore().add(city)
+  useToast().success('City added')
+}
 </script>
 
 <style scoped>

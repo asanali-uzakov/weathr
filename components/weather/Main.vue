@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col gap-4 bg-background p-10 max-w-lg">
+  <div class="flex flex-col gap-4 bg-background p-10 max-w-lg rounded-xl">
     <WeatherCurrent :current="weatherData.current" />
-    <span class="h-px w-full bg-border" />
+    <!-- <span class="h-px w-full bg-border" /> -->
     <WeatherHourly :hourly="weatherData.hourly" />
-    <span class="h-px w-full bg-border" />
+    <!-- <span class="h-px w-full bg-border" /> -->
     <WeatherDaily :daily="weatherData.daily" />
   </div>
 </template>
