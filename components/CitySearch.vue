@@ -57,7 +57,7 @@ async function search(q: string) {
 function openCity(city: City) {
   useCitiesStore().open(city)
   close()
-  return navigateTo('/')
+  return navigateTo(`/${useCitiesStore().getFullId(city)}`)
 }
 
 const keys = useMagicKeys()

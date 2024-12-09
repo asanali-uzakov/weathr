@@ -18,9 +18,8 @@ export default function () {
     }
   }
 
-  async function lookup(id: number, type: 'relation' | 'node' | 'way'): Promise<City> {
-    const query = (type === 'relation' ? 'R' : type === 'node' ? 'N' : 'W') + id
-    const cities: Record<string, unknown>[] = await $fetch(`https://nominatim.openstreetmap.org/lookup?osm_ids=${query}&format=jsonv2&addressdetails=1`)
+  async function lookup(q: string): Promise<City> {
+    const cities: Record<string, unknown>[] = await $fetch(`https://nominatim.openstreetmap.org/lookup?osm_ids=${q}&format=jsonv2&addressdetails=1`)
     return mapCities(cities)[0]
   }
 
