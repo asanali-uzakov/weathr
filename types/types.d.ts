@@ -27,4 +27,5 @@ interface City {
   latitude: number
   longitude: number
   osmId: number
+  osmType: 'relation' | 'node' | 'way'
 }
