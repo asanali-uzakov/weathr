@@ -26,5 +26,5 @@ interface City {
   state?: string
   latitude: number
   longitude: number
-  placeId: number
+  osmId: number
 }

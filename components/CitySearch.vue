@@ -26,7 +26,7 @@
             <!-- <CommandEmpty>No results found.</CommandEmpty> -->
             <CommandItem
               v-for="city in cities"
-              :key="city.placeId"
+              :key="city.osmId"
               :value="city"
             >
               <div class="flex gap-3 items-center">
