@@ -1,6 +1,9 @@
 <template>
-  <div>
-    {{ weatherData }}
+  <div class="w-full min-h-screen flex items-center justify-center bg-muted p-10">
+    <WeatherMain
+      :weather-data="weatherData"
+      :city="city"
+    />
   </div>
 </template>
 

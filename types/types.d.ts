@@ -1,22 +1,29 @@
+interface CurrentWeather {
+  time: Date
+  temperature: number
+  weatherCode: number
+  windSpeed: number
+  windDirection: number
+  temperatureMax: number
+  temperatureMin: number
+}
+
+interface HourlyWeather {
+  time: Date
+  temperature: number
+  precipitation: number
+  weatherCode: number
+}
+interface DailyWeather {
+  time: Date
+  weatherCode: number
+  temperatureMax: number
+  temperatureMin: number
+}
 interface WeatherData {
-  current: {
-    time: Date
-    temperature: number
-    weatherCode: number
-    windSpeed: number
-    windDirection: number
-  }
-  hourly: {
-    time: Date
-    temperature: number
-    precipitation: number
-  }[]
-  daily: {
-    time: Date
-    weatherCode: number
-    temperatureMax: number
-    temperatureMin: number
-  }[]
+  current: CurrentWeather
+  hourly: HourlyWeather[]
+  daily: DailyWeather[]
 }
 
 interface City {

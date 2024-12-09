@@ -10,6 +10,12 @@ export default defineNuxtConfig({
     '@nuxt/icon',
   ],
   ssr: false,
+  components: [
+    {
+      path: '~/components/weather',
+      prefix: 'Weather',
+    },
+  ],
   devtools: { enabled: true },
   colorMode: {
     classSuffix: '',
