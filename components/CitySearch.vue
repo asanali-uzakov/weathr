@@ -58,7 +58,7 @@ const isOpen = ref(false)
 const cities: Ref<City[]> = ref([])
 
 async function search(q: string) {
-  cities.value = await useCitiesStore().get(q)
+  cities.value = await useGeo().search(q)
 }
 
 function openCity(city: City) {
