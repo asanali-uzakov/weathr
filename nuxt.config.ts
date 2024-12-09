@@ -15,6 +15,10 @@ export default defineNuxtConfig({
       path: '~/components/weather',
       prefix: 'Weather',
     },
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
   ],
   devtools: { enabled: true },
   colorMode: {
