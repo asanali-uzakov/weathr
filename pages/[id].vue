@@ -47,7 +47,6 @@ watch(keys['Cmd+Enter'], (v) => {
 
 function addCity() {
   useCitiesStore().add(city)
-  useToast().success('City added', { description: `${city.name}, ${city.country}` })
 }
 </script>
 

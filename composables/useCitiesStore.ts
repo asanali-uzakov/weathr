@@ -3,8 +3,12 @@ export const useCitiesStore = defineStore('cities', () => {
   const currentCity = ref<City | undefined>(undefined)
 
   function add(city: City) {
-    if (savedCities.value.some(c => c.osmId === city.osmId)) return
+    if (savedCities.value.some(c => c.osmId === city.osmId)) {
+      useToast().error('City already added')
+      return
+    }
     savedCities.value.push(city)
+    useToast().success('City added', { description: `${city.name}, ${city.country}` })
   }
 
   function remove(city: City) {
