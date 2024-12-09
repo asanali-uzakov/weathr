@@ -1,53 +1,46 @@
 <template>
-  <div>
-    <p class="text-sm text-muted-foreground">
-      Press
-      <kbd
-        class="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100"
+  <Dialog
+    :open="isOpen"
+    @update:open="toggle"
+  >
+    <DialogTrigger>
+      <slot />
+    </DialogTrigger>
+    <DialogContent class="overflow-hidden p-0 shadow-lg">
+      <VisuallyHidden>
+        <DialogTitle>Search for a city</DialogTitle>
+        <DialogDescription />
+      </VisuallyHidden>
+      <Command
+        @update:model-value="openCity($event as City)"
+        @update:search-term="search($event)"
       >
-        <span class="text-xs">⌘</span>K
-      </kbd>
-    </p>
-    <Dialog
-      :open="isOpen"
-      @update:open="toggle"
-    >
-      <DialogContent class="overflow-hidden p-0 shadow-lg">
-        <VisuallyHidden>
-          <DialogTitle>Search for a city</DialogTitle>
-          <DialogDescription />
-        </VisuallyHidden>
-        <Command
-          @update:model-value="openCity($event as City)"
-          @update:search-term="search($event)"
-        >
-          <CommandInput placeholder="Type a city name..." />
-          <CommandList>
-            <!-- <CommandEmpty>No results found.</CommandEmpty> -->
-            <CommandItem
-              v-for="city in cities"
-              :key="city.osmId"
-              :value="city"
-            >
-              <div class="flex gap-3 items-center">
-                <Icon
-                  class="size-5"
-                  :name="`circle-flags:${city.countryCode}`"
-                />
-                <div>
-                  <p>{{ city.name }}</p>
-                  <p class="text-muted-foreground">
-                    <span>{{ city.country }}</span>
-                    <span v-if="city.state">, {{ city.state }}</span>
-                  </p>
-                </div>
+        <CommandInput placeholder="Type a city name..." />
+        <CommandList>
+          <!-- <CommandEmpty>No results found.</CommandEmpty> -->
+          <CommandItem
+            v-for="city in cities"
+            :key="city.osmId"
+            :value="city"
+          >
+            <div class="flex gap-3 items-center">
+              <Icon
+                class="size-5"
+                :name="`circle-flags:${city.countryCode}`"
+              />
+              <div>
+                <p>{{ city.name }}</p>
+                <p class="text-muted-foreground">
+                  <span>{{ city.country }}</span>
+                  <span v-if="city.state">, {{ city.state }}</span>
+                </p>
               </div>
-            </CommandItem>
-          </CommandList>
-        </Command>
-      </DialogContent>
-    </Dialog>
-  </div>
+            </div>
+          </CommandItem>
+        </CommandList>
+      </Command>
+    </DialogContent>
+  </Dialog>
 </template>
 
 <script setup lang="ts">
