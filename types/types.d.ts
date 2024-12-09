@@ -21,9 +21,16 @@ interface DailyWeather {
   temperatureMin: number
 }
 interface WeatherData {
+  timeZone: string
   current: CurrentWeather
   hourly: HourlyWeather[]
   daily: DailyWeather[]
+}
+
+interface CompactWeather {
+  timeZone: string
+  temperature: number
+  weatherCode: number
 }
 
 interface City {

@@ -6,7 +6,7 @@
         {{ city.name }}, {{ city.country }}
       </h1>
       <p class="text-muted-foreground">
-        {{ useDateFormat(Date.now(), 'ddd DD.MM, HH:mm') }}
+        {{ currentTime(weatherData.timeZone, true) }}
       </p>
       <Button
         size="sm"
@@ -14,6 +14,16 @@
       >
         Add city <Shortcut><span>⌘⏎</span></Shortcut>
       </Button>
+      <CitySearch>
+        <Button
+          size="sm"
+        >
+          Search for a City
+          <Shortcut>
+            <span>⌘</span>K
+          </Shortcut>
+        </Button>
+      </CitySearch>
     </div>
     <WeatherMain
       :weather-data="weatherData"
@@ -36,9 +46,8 @@ watch(keys['Cmd+Enter'], (v) => {
 })
 
 function addCity() {
-  console.log('add city')
   useCitiesStore().add(city)
-  useToast().success('City added')
+  useToast().success('City added', { description: `${city.name}, ${city.country}` })
 }
 </script>
 

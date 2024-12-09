@@ -2,6 +2,7 @@ import { fetchWeatherApi } from 'openmeteo'
 
 export const useWeatherStore = defineStore('weather', () => {
   const weatherData: Ref<WeatherData | undefined> = ref(undefined)
+  const url = 'https://api.open-meteo.com/v1/forecast'
 
   async function getWeatherData(latitude: number, longitude: number) {
     const params = {
@@ -10,8 +11,8 @@ export const useWeatherStore = defineStore('weather', () => {
       current: 'temperature_2m,weather_code,wind_speed_10m,wind_direction_10m',
       hourly: 'temperature_2m,precipitation,weather_code',
       daily: 'weather_code,temperature_2m_max,temperature_2m_min',
+      timezone: 'auto',
     }
-    const url = 'https://api.open-meteo.com/v1/forecast'
     const responses = await fetchWeatherApi(url, params)
 
     // Process first location. Add a for-loop for multiple locations or weather models
@@ -28,6 +29,7 @@ export const useWeatherStore = defineStore('weather', () => {
     const oneDayInSeconds = 24 * 60 * 60
 
     weatherData.value = {
+      timeZone: response.timezone() ?? '',
       current: {
         time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
         temperature: Math.round(current.variables(0)!.value()), // Current is only 1 value, therefore `.value()`
@@ -56,5 +58,29 @@ export const useWeatherStore = defineStore('weather', () => {
     }
     return weatherData.value
   }
-  return { weatherData, getWeatherData }
+
+  async function getCitiesWeather(cities: City[]): Promise<{ city: City, weather: CompactWeather }[]> {
+    const params = {
+      latitude: cities.map(c => c.latitude),
+      longitude: cities.map(c => c.longitude),
+      current: ['temperature_2m', 'weather_code'],
+      timezone: 'auto',
+    }
+
+    const responses = await fetchWeatherApi(url, params)
+
+    return responses.map((response, index) => {
+      const current = response.current()!
+
+      return {
+        city: cities[index],
+        weather: {
+          timeZone: response.timezone() ?? '',
+          temperature: Math.round(current.variables(0)!.value()),
+          weatherCode: current.variables(1)!.value(),
+        },
+      }
+    })
+  }
+  return { weatherData, getWeatherData, getCitiesWeather }
 })
