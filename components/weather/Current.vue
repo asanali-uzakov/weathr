@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="flex justify-between">
+    <div class="flex justify-between my-8">
       <p class="text-9xl font-bold">
         {{ current.temperature }}&deg;
       </p>
@@ -9,7 +9,7 @@
         <p><Icon name="line-md:arrow-down" /> {{ current.temperatureMin }}&deg;</p>
       </div>
     </div>
-    <div class="mt-4 flex flex-col gap-4">
+    <div class="flex flex-col gap-4">
       <p class="text-lg font-medium">
         {{ useWeatherCode(current.weatherCode).description }}
       </p>

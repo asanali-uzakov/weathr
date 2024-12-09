@@ -1,7 +1,7 @@
 <template>
   <section class="bg-muted rounded-lg p-6">
     <p class="text-muted-foreground text-sm">
-      {{ useDateFormat(daily[0].time, 'DD.MM') }} - {{ useDateFormat(daily[0].time, 'DD.MM') }}
+      {{ useDateFormat(daily[0].time, 'DD.MM') }} - {{ useDateFormat(daily[daily.length -1].time, 'DD.MM') }}
     </p>
     <h2 class="text-xl font-bold mb-4">
       7-Day Forecast

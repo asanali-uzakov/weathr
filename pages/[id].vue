@@ -1,12 +1,8 @@
 <template>
   <div class="min-h-screen flex flex-col gap-4 items-center justify-center bg-muted p-10">
     <div class="flex justify-between w-full">
-      <h1 class="text-lg font-medium">
-        <Icon name="line-md:map-marker-filled" />
-        {{ city.name }}, {{ city.country }}
-      </h1>
-      <p class="text-muted-foreground">
-        {{ currentTime(weatherData.timeZone, true) }}
+      <p class="font-bold">
+        weathr.
       </p>
       <Button
         size="sm"
@@ -14,15 +10,16 @@
       >
         Add city <Shortcut><span>⌘⏎</span></Shortcut>
       </Button>
+
       <CitySearch>
-        <Button
+        <!-- <Button
           size="sm"
         >
           Search for a City
           <Shortcut>
             <span>⌘</span>K
           </Shortcut>
-        </Button>
+        </Button> -->
       </CitySearch>
     </div>
     <WeatherMain
