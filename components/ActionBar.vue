@@ -20,15 +20,17 @@
         Share
       </ActionBarButton>
 
-      <span class="h-5 w-px bg-border" />
+      <template v-if="!useCitiesStore().isSaved(city)">
+        <span class="h-5 w-px bg-border" />
 
-      <Button
-        size="sm"
-        @click="addCity"
-      >
-        Add City
-        <Shortcut><span>⌘↵</span></Shortcut>
-      </Button>
+        <Button
+          size="sm"
+          @click="addCity"
+        >
+          Add City
+          <Shortcut><span>⌘↵</span></Shortcut>
+        </Button>
+      </template>
     </div>
   </Teleport>
 </template>

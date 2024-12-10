@@ -23,5 +23,9 @@ export const useCitiesStore = defineStore('cities', () => {
     return (city.osmType === 'relation' ? 'R' : city.osmType === 'node' ? 'N' : 'W') + city.osmId
   }
 
-  return { savedCities, currentCity, add, remove, open, getFullId }
+  function isSaved(city: City) {
+    return savedCities.value.some(c => c.osmId === city.osmId)
+  }
+
+  return { savedCities, currentCity, add, remove, open, getFullId, isSaved }
 })
