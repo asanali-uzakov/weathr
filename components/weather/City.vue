@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-muted p-6 rounded-lg"
+    class="cursor-pointer bg-muted p-6 rounded-lg"
     @click="openCity"
   >
     <div class="flex justify-between">

@@ -1,32 +1,8 @@
 <template>
-  <div class="min-h-screen flex flex-col gap-4 items-center justify-center bg-muted p-10">
-    <div class="flex justify-between w-full">
-      <p class="font-bold">
-        weathr.
-      </p>
-      <Button
-        size="sm"
-        @click="addCity"
-      >
-        Add city <Shortcut><span>⌘⏎</span></Shortcut>
-      </Button>
-
-      <CitySearch>
-        <!-- <Button
-          size="sm"
-        >
-          Search for a City
-          <Shortcut>
-            <span>⌘</span>K
-          </Shortcut>
-        </Button> -->
-      </CitySearch>
-    </div>
-    <WeatherMain
-      :weather-data="weatherData"
-      :city="city"
-    />
-  </div>
+  <WeatherMain
+    :weather-data="weatherData"
+    :city="city"
+  />
 </template>
 
 <script setup lang="ts">

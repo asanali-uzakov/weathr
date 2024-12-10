@@ -1,5 +1,5 @@
 <template>
-  <div class="h-dvh w-full flex flex-col gap-2 p-32 justify-center items-center">
+  <div class="w-full flex flex-col gap-2 justify-center items-center">
     <Icon
       class="size-40 mb-8"
       name="line-md:map-marker-alt-loop"
@@ -11,17 +11,19 @@
       Use my location to show the weather forecasts
     </p>
     <Button
-      class="mt-auto"
+      class="mt-40"
       size="lg"
       @click="navigateTo('/location')"
     >
       Find me
     </Button>
-    <p>or</p>
+    <p class="text-muted-foreground">
+      or
+    </p>
 
     <CitySearch>
       <Button
-        variant="secondary"
+        variant="outline"
         size="lg"
       >
         Search for a City
