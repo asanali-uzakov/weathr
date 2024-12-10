@@ -16,6 +16,7 @@
       <WeatherHourly :hourly="weatherData.hourly" />
       <WeatherDaily :daily="weatherData.daily" />
     </div>
+    <ActionBar :city="city" />
   </div>
 </template>
 

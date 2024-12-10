@@ -4,6 +4,26 @@
       <h1 class="text-6xl font-bold">
         Today
       </h1>
+      <CitySearch>
+        <Button
+          variant="outline"
+          size="lg"
+        >
+          Search for a City
+          <Shortcut>
+            <span>⌘</span>K
+          </Shortcut>
+        </Button>
+      </CitySearch>
+      <Button
+        variant="outline"
+        size="lg"
+      >
+        Use current location
+        <Shortcut>
+          <span>⌘</span>K
+        </Shortcut>
+      </Button>
     </div>
     <div class="flex flex-col gap-6">
       <WeatherCity

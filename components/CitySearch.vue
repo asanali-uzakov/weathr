@@ -1,46 +1,48 @@
 <template>
-  <Dialog
-    :open="isOpen"
-    @update:open="toggle"
-  >
-    <DialogTrigger>
-      <slot />
-    </DialogTrigger>
-    <DialogContent class="overflow-hidden p-0 shadow-lg">
-      <VisuallyHidden>
-        <DialogTitle>Search for a city</DialogTitle>
-        <DialogDescription />
-      </VisuallyHidden>
-      <Command
-        @update:model-value="openCity($event as City)"
-        @update:search-term="search($event)"
-      >
-        <CommandInput placeholder="Type a city name..." />
-        <CommandList>
-          <!-- <CommandEmpty>No results found.</CommandEmpty> -->
-          <CommandItem
-            v-for="city in cities"
-            :key="city.osmId"
-            :value="city"
-          >
-            <div class="flex gap-3 items-center">
-              <Icon
-                class="size-5"
-                :name="`circle-flags:${city.countryCode}`"
-              />
-              <div>
-                <p>{{ city.name }}</p>
-                <p class="text-muted-foreground">
-                  <span>{{ city.country }}</span>
-                  <span v-if="city.state">, {{ city.state }}</span>
-                </p>
+  <div>
+    <Dialog
+      :open="isOpen"
+      @update:open="toggle"
+    >
+      <DialogTrigger as-child>
+        <slot />
+      </DialogTrigger>
+      <DialogContent class="overflow-hidden p-0 shadow-lg">
+        <VisuallyHidden>
+          <DialogTitle>Search for a city</DialogTitle>
+          <DialogDescription />
+        </VisuallyHidden>
+        <Command
+          @update:model-value="openCity($event as City)"
+          @update:search-term="search($event)"
+        >
+          <CommandInput placeholder="Type a city name..." />
+          <CommandList>
+            <!-- <CommandEmpty>No results found.</CommandEmpty> -->
+            <CommandItem
+              v-for="city in cities"
+              :key="city.osmId"
+              :value="city"
+            >
+              <div class="flex gap-3 items-center">
+                <Icon
+                  class="size-5"
+                  :name="`circle-flags:${city.countryCode}`"
+                />
+                <div>
+                  <p>{{ city.name }}</p>
+                  <p class="text-muted-foreground">
+                    <span>{{ city.country }}</span>
+                    <span v-if="city.state">, {{ city.state }}</span>
+                  </p>
+                </div>
               </div>
-            </div>
-          </CommandItem>
-        </CommandList>
-      </Command>
-    </DialogContent>
-  </Dialog>
+            </CommandItem>
+          </CommandList>
+        </Command>
+      </DialogContent>
+    </Dialog>
+  </div>
 </template>
 
 <script setup lang="ts">
