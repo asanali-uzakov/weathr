@@ -76,3 +76,9 @@
     @apply bg-muted text-foreground;
   }
 }
+
+@layer components {
+  .clickable {
+    @apply cursor-pointer active:scale-95 transition-all duration-300
+  }
+}

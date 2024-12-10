@@ -1,6 +1,6 @@
 <template>
   <section class="bg-muted rounded-lg p-6">
-    <h2 class="text-xl font-bold mb-4">
+    <h2 class="text-xl font-medium mb-4">
       Hourly Forecast
     </h2>
     <div class="gap-8 flex overflow-x-scroll py-4">

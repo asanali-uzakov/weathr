@@ -1,16 +1,12 @@
 <template>
   <ColorScheme>
-    <button
-      class="p-2 flex rounded-full"
+    <ActionBarButton
+      :key="$colorMode.value"
+      :icon="icon"
       @click="toggleTheme"
     >
-      <Icon
-        :key="$colorMode.value"
-        class="size-5"
-        :name="icon"
-        mode="svg"
-      />
-    </button>
+      <p>{{ capitalizeFirst(useColorMode().preference) }}</p>
+    </ActionBarButton>
   </ColorScheme>
 </template>
 
@@ -33,6 +29,10 @@ function toggleTheme() {
   const next = modes[(modes.indexOf(current) + 1) % modes.length]
 
   useColorMode().preference = next
+}
+
+function capitalizeFirst(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
 }
 </script>
 

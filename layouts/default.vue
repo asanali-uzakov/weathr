@@ -16,12 +16,9 @@
             </Shortcut>
           </Button>
         </CitySearch> -->
-        <button class="flex p-2 rounded-full">
-          <Icon
-            name="line-md:github-loop"
-            class="size-5"
-          />
-        </button>
+        <ActionBarButton icon="line-md:github-loop">
+          <p>Github</p>
+        </ActionBarButton>
         <ThemeSwitcher />
       </div>
       <slot />

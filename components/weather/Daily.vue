@@ -3,7 +3,7 @@
     <p class="text-muted-foreground text-sm">
       {{ useDateFormat(daily[0].time, 'DD.MM') }} - {{ useDateFormat(daily[daily.length -1].time, 'DD.MM') }}
     </p>
-    <h2 class="text-xl font-bold mb-4">
+    <h2 class="text-xl font-medium mb-4">
       7-Day Forecast
     </h2>
     <div class="flex flex-col gap-6">

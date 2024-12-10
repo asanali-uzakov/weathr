@@ -3,7 +3,7 @@ export const useCitiesStore = defineStore('cities', () => {
   const currentCity = ref<City | undefined>(undefined)
 
   function add(city: City) {
-    if (savedCities.value.some(c => c.osmId === city.osmId)) {
+    if (isSaved(city)) {
       useToast().error('City already added')
       return
     }
@@ -12,7 +12,12 @@ export const useCitiesStore = defineStore('cities', () => {
   }
 
   function remove(city: City) {
+    if (!isSaved(city)) {
+      useToast().error('City not found')
+      return
+    }
     savedCities.value = savedCities.value.filter(c => c.osmId !== city.osmId)
+    useToast().success('City removed', { description: `${city.name}, ${city.country}` })
   }
 
   function open(city: City) {
