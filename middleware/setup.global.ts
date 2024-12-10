@@ -1,15 +1,17 @@
-export default defineNuxtRouteMiddleware(async () => {
+export default defineNuxtRouteMiddleware(async (to) => {
   if (!useCityWeatherStore().isLoaded) {
     await useCityWeatherStore().getSavedCitiesWeather()
   }
-  // const store = storeToRefs(useCitiesStore())
-  // if (to.path === '/') {
-  //   if (store.currentCity.value) {
-  //     return navigateTo(`/${useCitiesStore().getFullId(store.currentCity.value)}`)
-  //   }
 
-  //   if (store.savedCities.value.length > 0) {
-  //     return navigateTo(`/${useCitiesStore().getFullId(store.savedCities.value[0])}`)
-  //   }
-  // }
+  if (to.path === '/cities') {
+    if (!useCityWeatherStore().cities.length) {
+      return navigateTo('/')
+    }
+  }
+
+  if (to.path === '/') {
+    if (useCityWeatherStore().cities.length) {
+      return navigateTo(`/${useCitiesStore().getFullId(useCityWeatherStore().cities[0].city)}`)
+    }
+  }
 })

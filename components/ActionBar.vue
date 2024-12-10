@@ -2,6 +2,7 @@
   <Teleport to="body">
     <div class="text-muted-foreground flex items-center gap-2 fixed bg-background border shadow-lg py-2 px-4 rounded-lg left-1/2 bottom-14 -translate-x-1/2">
       <ActionBarButton
+        v-if="useCityWeatherStore().cities.length"
         icon="mi-menu"
         @click="openCitiesList"
       >
