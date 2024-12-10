@@ -7,23 +7,23 @@
       <div class="flex justify-between">
         <div class="flex flex-col">
           <p class="text-sm text-muted-foreground">
-            {{ city.country }}
+            {{ cityWeather.city.country }}
           </p>
           <p class="text-xl font-medium">
-            {{ city.name }}
+            {{ cityWeather.city.name }}
           </p>
         </div>
         <div class="flex flex-col items-end">
           <p class="text-sm text-muted-foreground">
-            {{ currentTime(weather.timeZone) }}
+            {{ currentTime(cityWeather.timeZone) }}
           </p>
           <div class="flex items-center gap-1">
             <p class="text-xl font-medium">
-              {{ weather.temperature }}&deg;
+              {{ cityWeather.weather.current.temperature }}&deg;
             </p>
             <Icon
               class="text-muted-foreground size-6"
-              :name="useWeatherCode(weather.weatherCode).icon"
+              :name="useWeatherCode(cityWeather.weather.current.weatherCode).icon"
             />
           </div>
         </div>
@@ -32,7 +32,7 @@
     <button
       :class="editingMode ? 'basis-24' : 'basis-0'"
       class="clickable rounded-lg bg-destructive hover:bg-destructive/80"
-      @click="useCitiesStore().remove(city)"
+      @click="useCitiesStore().remove(cityWeather.city)"
     >
       <Icon
         :class="editingMode ? 'size-6' : 'size-0'"
@@ -45,13 +45,12 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  city: City
-  weather: CompactWeather
+  cityWeather: CityWeather
   editingMode: boolean
 }>()
 
 function openCity() {
-  navigateTo(`/${useCitiesStore().getFullId(props.city)}`)
+  navigateTo(`/${useCitiesStore().getFullId(props.cityWeather.city)}`)
 }
 </script>
 

@@ -33,10 +33,9 @@
     </div>
     <div class="flex flex-col gap-4">
       <WeatherCity
-        v-for="cityWeather in citiesWeather"
+        v-for="cityWeather in cities"
         :key="cityWeather.city.osmId"
-        :city="cityWeather.city"
-        :weather="cityWeather.weather"
+        :city-weather="cityWeather"
         :editing-mode="editingMode"
       />
     </div>
@@ -44,8 +43,7 @@
 </template>
 
 <script setup lang="ts">
-const { savedCities } = storeToRefs(useCitiesStore())
-const citiesWeather = await useWeatherStore().getCitiesWeather(savedCities.value)
+const { cities } = storeToRefs(useCityWeatherStore())
 
 const editingMode = ref(false)
 </script>

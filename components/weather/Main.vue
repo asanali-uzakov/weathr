@@ -4,26 +4,25 @@
       <div class="flex justify-between">
         <h1 class="text-lg font-medium">
           <Icon name="line-md:map-marker-filled" />
-          {{ city.name }}, {{ city.country }}
+          {{ cityWeather.city.name }}, {{ cityWeather.city.country }}
         </h1>
         <p class="text-muted-foreground">
-          {{ currentTime(weatherData.timeZone, true) }}
+          {{ currentTime(cityWeather.timeZone, true) }}
         </p>
       </div>
-      <WeatherCurrent :current="weatherData.current" />
+      <WeatherCurrent :current="cityWeather.weather.current" />
     </div>
     <div class="flex flex-col gap-8">
-      <WeatherHourly :hourly="weatherData.hourly" />
-      <WeatherDaily :daily="weatherData.daily" />
+      <WeatherHourly :hourly="cityWeather.weather.hourly" />
+      <WeatherDaily :daily="cityWeather.weather.daily" />
     </div>
-    <ActionBar :city="city" />
+    <ActionBar :city="cityWeather.city" />
   </div>
 </template>
 
 <script setup lang="ts">
 defineProps<{
-  weatherData: WeatherData
-  city: City
+  cityWeather: CityWeather
 }>()
 </script>
 

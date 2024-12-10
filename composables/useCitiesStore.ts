@@ -1,8 +1,7 @@
 export const useCitiesStore = defineStore('cities', () => {
   const savedCities: Ref<City[]> = useLocalStorage('saved-cities', [])
-  const currentCity = ref<City | undefined>(undefined)
 
-  function add(city: City) {
+  function add(city: City): void {
     if (isSaved(city)) {
       useToast().error('City already added')
       return
@@ -11,7 +10,7 @@ export const useCitiesStore = defineStore('cities', () => {
     useToast().success('City added', { description: `${city.name}, ${city.country}` })
   }
 
-  function remove(city: City) {
+  function remove(city: City): void {
     if (!isSaved(city)) {
       useToast().error('City not found')
       return
@@ -20,17 +19,19 @@ export const useCitiesStore = defineStore('cities', () => {
     useToast().success('City removed', { description: `${city.name}, ${city.country}` })
   }
 
-  function open(city: City) {
-    currentCity.value = city
-  }
-
   function getFullId(city: City): string {
     return (city.osmType === 'relation' ? 'R' : city.osmType === 'node' ? 'N' : 'W') + city.osmId
   }
 
-  function isSaved(city: City) {
+  function isSaved(city: City): boolean {
     return savedCities.value.some(c => c.osmId === city.osmId)
   }
 
-  return { savedCities, currentCity, add, remove, open, getFullId, isSaved }
+  function getCityById(id: string): City | undefined {
+    const osmType = id[0] === 'R' ? 'relation' : id[0] === 'N' ? 'node' : 'way'
+    const osmId = Number(id.slice(1))
+    return savedCities.value.find(c => c.osmType === osmType && c.osmId === osmId)
+  }
+
+  return { savedCities, add, remove, getFullId, isSaved, getCityById }
 })

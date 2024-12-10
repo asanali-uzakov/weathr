@@ -21,7 +21,6 @@ interface DailyWeather {
   temperatureMin: number
 }
 interface WeatherData {
-  timeZone: string
   current: CurrentWeather
   hourly: HourlyWeather[]
   daily: DailyWeather[]
@@ -42,4 +41,10 @@ interface City {
   longitude: number
   osmId: number
   osmType: 'relation' | 'node' | 'way'
+}
+
+interface CityWeather {
+  city: City
+  timeZone: string
+  weather: WeatherData
 }

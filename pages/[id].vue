@@ -1,14 +1,12 @@
 <template>
   <WeatherMain
-    :weather-data="weatherData"
-    :city="city"
+    :city-weather="cityWeather"
   />
 </template>
 
 <script setup lang="ts">
 const id = useRoute().params.id as string
-const city = await useGeo().lookup(id)
-const weatherData = await useWeatherStore().getWeatherData(city.latitude, city.longitude)
+const cityWeather = await useCityWeatherStore().getCityWeather(id)
 </script>
 
 <style scoped>
