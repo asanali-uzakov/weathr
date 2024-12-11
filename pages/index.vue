@@ -64,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-useSeoMeta({
+useHead({
   title: 'Today | weathr.',
 })
 

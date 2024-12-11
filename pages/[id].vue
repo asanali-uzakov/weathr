@@ -7,7 +7,7 @@
 <script setup lang="ts">
 const id = useRoute().params.id as string
 const cityWeather = await useCityWeatherStore().getCityWeather(id)
-useSeoMeta({
+useHead({
   title: 'Weather in ' + cityWeather.city.name,
 })
 </script>
