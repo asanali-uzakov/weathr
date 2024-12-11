@@ -4,8 +4,13 @@
       class="grow cursor-pointer bg-muted hover:bg-border p-6 rounded-lg clickable"
       @click="openCity"
     >
-      <div class="flex justify-between">
-        <div class="flex flex-col">
+      <div class="flex items-center gap-4">
+        <Icon
+          v-if="currentLocation"
+          name="line-md:map-marker-loop"
+          class="size-8 text-muted-foreground"
+        />
+        <div class="flex flex-col mr-auto">
           <p class="text-sm text-muted-foreground">
             {{ cityWeather.city.country }}
           </p>
@@ -47,6 +52,7 @@
 const props = defineProps<{
   cityWeather: CityWeather
   editingMode: boolean
+  currentLocation?: boolean
 }>()
 
 function openCity() {

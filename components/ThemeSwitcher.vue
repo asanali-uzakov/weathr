@@ -30,10 +30,6 @@ function toggleTheme() {
 
   useColorMode().preference = next
 }
-
-function capitalizeFirst(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1)
-}
 </script>
 
   <style scoped>
