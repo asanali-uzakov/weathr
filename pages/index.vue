@@ -64,6 +64,10 @@
 </template>
 
 <script setup lang="ts">
+useSeoMeta({
+  title: 'Today | weathr.',
+})
+
 const { cities } = storeToRefs(useCityWeatherStore())
 const { locationWeather } = storeToRefs(useLocationWeatherStore())
 
