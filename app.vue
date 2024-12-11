@@ -12,6 +12,7 @@ useSeoMeta({
   description: 'Minimalist weather',
   ogDescription: 'Minimalist weather',
   ogImage: '/ogImage.png',
+  ogUrl: 'https://weathr-web.netlify.app',
   twitterTitle: 'weathr.',
   twitterDescription: 'Minimalist weather',
   twitterImage: '/ogImage.png',
