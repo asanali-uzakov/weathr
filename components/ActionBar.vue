@@ -58,7 +58,7 @@ function share() {
   useToast().success('Link copied to clipboard')
 }
 function openCitiesList() {
-  return navigateTo('/cities')
+  return navigateTo('/')
 }
 </script>
 
