@@ -59,7 +59,7 @@ export default function () {
     return cities.map(city => ({
       osmId: city.osm_id as number,
       osmType: city.osm_type as 'relation' | 'node' | 'way',
-      name: city.name as string,
+      name: city.name ? city.name as string : (city.address as Record<string, unknown>).city as string,
       country: (city.address as Record<string, unknown>).country as string,
       countryCode: (city.address as Record<string, unknown>).country_code as string,
       state: (city.address as Record<string, unknown>).state as string | undefined,

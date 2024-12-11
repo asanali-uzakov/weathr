@@ -33,6 +33,11 @@
     </div>
     <div class="flex flex-col gap-4">
       <WeatherCity
+        v-if="locationWeather"
+        :city-weather="locationWeather"
+        :editing-mode="false"
+      />
+      <WeatherCity
         v-for="cityWeather in cities"
         :key="cityWeather.city.osmId"
         :city-weather="cityWeather"
@@ -44,6 +49,7 @@
 
 <script setup lang="ts">
 const { cities } = storeToRefs(useCityWeatherStore())
+const { locationWeather } = storeToRefs(useLocationWeatherStore())
 
 const editingMode = ref(false)
 </script>
