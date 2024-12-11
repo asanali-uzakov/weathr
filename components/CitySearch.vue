@@ -14,7 +14,7 @@
         </VisuallyHidden>
         <Command
           @update:model-value="openCity($event as City)"
-          @update:search-term="search($event)"
+          @update:search-term="updateCities($event)"
         >
           <CommandInput placeholder="Type a city name..." />
           <CommandList>
@@ -51,9 +51,10 @@ import { VisuallyHidden } from 'radix-vue'
 const isOpen = ref(false)
 
 const cities: Ref<City[]> = ref([])
+const geo = useGeo()
 
-async function search(q: string) {
-  cities.value = await useGeo().search(q)
+async function updateCities(q: string) {
+  cities.value = await geo.debouncedSearch(q)
 }
 
 function openCity(city: City) {
@@ -80,6 +81,7 @@ function close() {
   isOpen.value = false
   setTimeout(() => {
     cities.value = []
+    geo.cancelSearch()
   }, 200)
 }
 

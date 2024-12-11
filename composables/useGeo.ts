@@ -1,7 +1,39 @@
 export default function () {
+  let abortController: AbortController | null = null
+
   async function search(q: string): Promise<City[]> {
-    const cities: Record<string, unknown>[] = await $fetch(`https://nominatim.openstreetmap.org/search?q=${q}&format=jsonv2&addressdetails=1`)
-    return mapCities(cities)
+    if (abortController) {
+      abortController.abort()
+    }
+
+    if (!q.trim()) {
+      return []
+    }
+
+    abortController = new AbortController()
+
+    try {
+      const cities: Record<string, unknown>[] = await $fetch(
+        `https://nominatim.openstreetmap.org/search?q=${q}&format=jsonv2&addressdetails=1`,
+        { signal: abortController.signal },
+      )
+      return mapCities(cities)
+    }
+    catch (error) {
+      if ((error as Error).name === 'AbortError') {
+        return []
+      }
+      throw error
+    }
+  }
+
+  const debouncedSearch = useDebounceFn(search, 200)
+
+  function cancelSearch() {
+    if (abortController) {
+      abortController.abort()
+      abortController = null
+    }
   }
 
   async function reverse(lat: number, lon: number): Promise<City> {
@@ -35,5 +67,12 @@ export default function () {
       longitude: city.lon as number,
     }))
   }
-  return { search, reverse, lookup }
+
+  return {
+    search,
+    debouncedSearch,
+    reverse,
+    lookup,
+    cancelSearch,
+  }
 }
