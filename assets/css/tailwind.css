@@ -68,6 +68,10 @@
   }
 }
 
+body {
+  font-family: DM Sans, sans-serif;
+}
+
 @layer base {
   * {
     @apply border-border;
