@@ -5,18 +5,10 @@
         <p class="font-bold text-xl mr-auto">
           weathr.
         </p>
-        <!-- <CitySearch v-if="useRoute().name !== 'index'">
-          <Button
-            class="border"
-            variant="outline"
-          >
-            Search for a City
-            <Shortcut>
-              <span>⌘</span>K
-            </Shortcut>
-          </Button>
-        </CitySearch> -->
-        <ActionBarButton icon="line-md:github-loop">
+        <ActionBarButton
+          icon="line-md:github-loop"
+          @click="openGithub"
+        >
           <p>Github</p>
         </ActionBarButton>
         <ThemeSwitcher />
@@ -27,6 +19,9 @@
 </template>
 
 <script setup lang="ts">
+function openGithub() {
+  return navigateTo('https://github.com/asanali-uzakov/weathr', { external: true, open: { target: '_blank' } })
+}
 </script>
 
 <style scoped>
