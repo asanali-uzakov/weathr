@@ -1,7 +1,7 @@
 <template>
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 bg-background h-full p-8 rounded-xl">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 bg-background h-full p-4 sm:p-8 rounded-t-xl sm:rounded-xl">
     <div>
-      <div class="flex justify-between">
+      <div class="flex gap-2 flex-col-reverse sm:flex-row justify-between">
         <h1 class="text-lg font-medium">
           <Icon name="line-md:map-marker-filled" />
           {{ cityWeather.city.name }}, {{ cityWeather.city.country }}
@@ -12,7 +12,7 @@
       </div>
       <WeatherCurrent :current="cityWeather.weather.current" />
     </div>
-    <div class="flex flex-col gap-8">
+    <div class="flex flex-col gap-4 sm:gap-8">
       <WeatherHourly :hourly="cityWeather.weather.hourly" />
       <WeatherDaily :daily="cityWeather.weather.daily" />
     </div>

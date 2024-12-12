@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-1 grid-rows-[auto_1fr] lg:grid-cols-2 gap-8 bg-background rounded-xl p-8">
+  <div class="grid grid-cols-1 grid-rows-[auto_1fr] lg:grid-cols-2 gap-8 bg-background rounded-t-xl sm:rounded-xl p-4 sm:p-8">
     <div class="flex flex-col gap-6">
       <h1 class="text-6xl font-bold">
         Today
