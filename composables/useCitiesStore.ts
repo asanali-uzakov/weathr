@@ -1,5 +1,47 @@
 export const useCitiesStore = defineStore('cities', () => {
-  const savedCities: Ref<City[]> = useLocalStorage('saved-cities', [])
+  const templateCities: City[] = [
+    {
+      osmId: 65606,
+      osmType: 'relation',
+      name: 'London',
+      country: 'United Kingdom',
+      countryCode: 'gb',
+      state: 'England',
+      latitude: 51.4893335,
+      longitude: -0.1440551,
+    },
+    {
+      osmId: 175905,
+      osmType: 'relation',
+      name: 'New York',
+      country: 'United States',
+      countryCode: 'us',
+      state: 'New York',
+      latitude: 40.7127281,
+      longitude: -74.0060152,
+    },
+    {
+      osmId: 62400,
+      osmType: 'relation',
+      name: 'Frankfurt',
+      country: 'Germany',
+      countryCode: 'de',
+      state: 'Hesse',
+      latitude: 50.1106444,
+      longitude: 8.6820917,
+    },
+    {
+      osmId: 71525,
+      osmType: 'relation',
+      name: 'Paris',
+      country: 'France',
+      countryCode: 'fr',
+      state: 'Ile-de-France',
+      latitude: 48.8534951,
+      longitude: 2.3483915,
+    },
+  ]
+  const savedCities: Ref<City[]> = useLocalStorage('saved-cities', templateCities)
 
   function add(city: City): void {
     if (isSaved(city)) {
